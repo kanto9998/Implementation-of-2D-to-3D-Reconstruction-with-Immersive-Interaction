@@ -1,8 +1,8 @@
 # Distribution / Virtual Env
-py_mesh_convert_back/venv/Lib/
+py_mesh_convert_back/venv/Lib
 
 # Mesh Files
-py_mesh_convert_back/stereo-magnification/single_view_mpi/For2D/output/
+py_mesh_convert_back/stereo-magnification/single_view_mpi/For2D/output
 
 # etc
 inha_ftp.zip
