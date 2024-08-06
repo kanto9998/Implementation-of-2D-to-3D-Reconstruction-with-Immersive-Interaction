@@ -1,0 +1,11 @@
+# Distribution / Virtual Env
+py_mesh_convert_back/venv/Lib/
+
+# Mesh Files
+py_mesh_convert_back/stereo-magnification/single_view_mpi/For2D/output/
+
+# etc
+inha_ftp.zip
+inha_unity-main.zip
+py_mesh_convert_back.zip
+유니티WebGL데모문서_240227.docx 

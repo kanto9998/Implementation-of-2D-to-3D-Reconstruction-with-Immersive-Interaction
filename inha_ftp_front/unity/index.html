@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | inha_Unity</title>
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body style="text-align: center">
+    <canvas id="unity-canvas" style="background: #ffffff;background-color:#DDDDDD; position: absolute; left:0px; top:0px; width:1920px; height:1080px; transform-origin: 0% 0%; transform:scale(1)"></canvas>
+    <div id="loading-cover">
+      <div id="unity-loading-bar">
+        <div id="unity-logo">
+        <p>Loading...</p>
+        <p>초기구동시에는 로딩이 오래걸릴 수 있습니다.</p>
+        </div>
+        <div id="unity-progress-bar-empty" style="display: none;">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+        <div class="spinner"></div>
+      </div>
+    </div>
+    <script src="Build/Web_Build.loader.js"></script>
+    <script>
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+      }
+
+      /*
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/Web_Build.data",
+        frameworkUrl: "Build/Web_Build.framework.js",
+        codeUrl: "Build/Web_Build.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "typing-1",
+        productVersion: "1.0",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      });
+      */
+
+      const config = {
+        dataUrl: "Build/Web_Build.data",
+        frameworkUrl: "Build/Web_Build.framework.js",
+        codeUrl: "Build/Web_Build.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "typing-1",
+        productVersion: "1.0",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      };
+
+      const canvas = document.querySelector("#unity-canvas");
+      const loadingCover = document.querySelector("#loading-cover");   
+      const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+      const progressBarFull = document.querySelector("#unity-progress-bar-full");
+      const spinner = document.querySelector('.spinner');      
+      var myGameInstance = null;
+      loadingCover.style.display = "";
+      createUnityInstance(canvas, config).then((unityInstance) => {
+        loadingCover.style.display = "none";
+        myGameInstance = unityInstance;
+      });
+    </script>
+    <script>
+      function setScale() {
+          var target = document.querySelectorAll( 'body > canvas' )[ 0 ];
+          if( target == null ) return;
+
+          var windowWidth = window.innerWidth;
+          var windowHeight = window.innerHeight;
+
+          var targetWidth = target.clientWidth;
+          var targetHeight = target.clientHeight;
+          var bRatio = windowWidth / targetWidth;
+          var yRatio = windowHeight / targetHeight;
+          var ratio = bRatio > yRatio ? yRatio : bRatio;
+
+          ( target.style.left = ( windowWidth - targetWidth * ratio ) / 2 + "px" ),
+          ( target.style.top = ( windowHeight - targetHeight * ratio ) / 2 + "px" ),
+          ( target.style.transformOrigin = "0% 0%" ),
+          ( target.style.MsTransformOrigin = "0% 0%" ),
+          ( target.style.MozTransformOrigin = "0% 0%" ),
+          ( target.style.WebkitTransformOrigin = "0% 0%" ),
+          ( target.style.transform = "scale(".concat(ratio, ")" )),
+          ( target.style.MsTransform = "scale(".concat(ratio, ")" )),
+          ( target.style.MozTransform = "scale(".concat(ratio, ")" )),
+          ( target.style.WebkitTransform = "scale(".concat(ratio, ")" ));
+      }
+
+      setScale();
+      window.addEventListener( 'resize', setScale, true );
+
+      window.onload = function() {
+          setScale();
+      };
+    </script>
+    <script src="Build/Web_Build.framework.js"></script>
+  </body>
+</html>

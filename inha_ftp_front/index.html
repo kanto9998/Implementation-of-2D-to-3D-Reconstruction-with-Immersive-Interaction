@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./scale.js"></script>
+    <script src="./util.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div style="background-color:#DDDDDD; position: absolute; left:0px; top:0px; width:1920px; height:1080px; transform-origin: 0% 0%; transform:scale(1)">
+        <div class="center_base">
+            <div class="unity_play" onclick="onUnity_Play()">
+                <p>유니티 실행</p>
+            </div>
+            <div class="image_load" onclick="onProfile_Image_File_Play()">
+                <p>이미지 불러오기</p>
+            </div>
+            <input type="file" id="profile_img_file" name="txtAtchFile1" accept="image/png,image/jpeg" style="display:none" onchange="onProfile_Image_File(this)" />
+        </div>
+    </div>
+</body>
+</html>
